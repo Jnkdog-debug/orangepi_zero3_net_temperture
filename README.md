@@ -26,7 +26,8 @@ project/ ├── drivers/ # Linux 驱动源码 ├── qt_ui/ # Qt 图形界
 ## 🚀 快速开始
 
 ### 环境要求：
-- 香橙派 Zero3 + Armbian
+- 香橙派 Zero3 + Ubuntu 22.04 (官方镜像)
+- 香橙派 zero3 内核6.1.31
 - Python3 / Qt / GCC / SPI/I2C 内核支持
 
 ### 初始化命令：

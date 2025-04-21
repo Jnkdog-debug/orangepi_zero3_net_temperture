@@ -1,1 +1,0 @@
-cmd_/home/xyz/orangepi_netemper_project/drivers/sensors/dht11/dht11_driver.mod := printf '%s\n'   dht11_driver.o | awk '!x[$$0]++ { print("/home/xyz/orangepi_netemper_project/drivers/sensors/dht11/"$$0) }' > /home/xyz/orangepi_netemper_project/drivers/sensors/dht11/dht11_driver.mod
