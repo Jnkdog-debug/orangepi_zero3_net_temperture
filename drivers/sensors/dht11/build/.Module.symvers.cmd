@@ -1,0 +1,1 @@
+cmd_/home/xyz/orangepi_netemper_project/drivers/sensors/dht11/Module.symvers :=  sed 's/ko$$/o/'  /home/xyz/orangepi_netemper_project/drivers/sensors/dht11/modules.order | scripts/mod/modpost      -o /home/xyz/orangepi_netemper_project/drivers/sensors/dht11/Module.symvers -e -i Module.symvers -T - 

@@ -1,0 +1,1 @@
+cmd_/home/xyz/orangepi_netemper_project/drivers/sensors/dht11/modules.order := {   echo /home/xyz/orangepi_netemper_project/drivers/sensors/dht11/dht11_driver.ko; :; } > /home/xyz/orangepi_netemper_project/drivers/sensors/dht11/modules.order

@@ -1,0 +1,27 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "allwinner,sun50i-h616";
+
+    fragment@0 {
+        target = <&spi1>;
+        __overlay__ {
+            status = "okay";
+
+            ili9341@0 {
+                compatible = "ilitek,ili9341";
+                reg = <0>; // cs0
+                spi-max-frequency = <16000000>;
+
+                rotate = <270>;
+
+                dc-gpios = <&pio 2 7 GPIO_ACTIVE_HIGH>;   // PC7
+                reset-gpios = <&pio 2 10 GPIO_ACTIVE_HIGH>; // PC10
+
+                bgr = <1>;
+                fps = <30>;
+            };
+        };
+    };
+};
