@@ -11,9 +11,9 @@
 | `build_guide.md`    | 编译内核、设备树和驱动模块的完整流程说明 |
 | `template.md`       | 编写驱动模块 README.md 的模板，可复制使用 |
 | `todo.md`           | 当前项目的开发计划与待办事项清单 |
-| `qt_notes.md`       | Qt UI 开发相关笔记（如有） |
-| `web_notes.md`      | Web 服务与远程数据交互相关文档（如有） |
-| `hardware_notes.md` | 外设连接方式、GPIO 引脚图、接线图等说明（如有） |
+| `qt_notes.md`       | Qt UI 开发相关笔记|
+| `web_notes.md`      | Web 服务与远程数据交互相关文档 |
+| `hardware_notes.md` | 外设连接方式、GPIO 引脚图、接线图等说明 |
 
 ---
 
