@@ -63,7 +63,8 @@ make
    用命令查看：
 
 
-         ``` bash orangepi@orangepizero3:~$ ls /lib/modules/6.1.31-sun50iw9/kernel/drivers/staging/fbtft/
+         ``` bash 
+         orangepi@orangepizero3:~$ ls /lib/modules/6.1.31-sun50iw9/kernel/drivers/staging/fbtft/
          fb_agm1264k-fl.ko  fb_ili9320.ko  fb_ra8875.ko   fb_ssd1306.ko  fb_tinylcd.ko
          fb_bd663474.ko     fb_ili9325.ko  fb_s6d02a1.ko  fb_ssd1325.ko  fb_tls8204.ko
          fb_hx8340bn.ko     fb_ili9340.ko  fb_s6d1121.ko  fb_ssd1331.ko  fb_uc1611.ko
