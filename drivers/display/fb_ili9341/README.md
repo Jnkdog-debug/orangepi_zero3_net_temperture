@@ -62,16 +62,17 @@ make
    1. 首先查询是否内核是否存在fb_ili9341的驱动
    用命令查看：
 
-   ``` bash 
-      orangepi@orangepizero3:~$ ls /lib/modules/6.1.31-sun50iw9/kernel/drivers/staging/fbtft/
+
+         ``` bash orangepi@orangepizero3:~$ ls /lib/modules/6.1.31-sun50iw9/kernel/drivers/staging/fbtft/
          fb_agm1264k-fl.ko  fb_ili9320.ko  fb_ra8875.ko   fb_ssd1306.ko  fb_tinylcd.ko
          fb_bd663474.ko     fb_ili9325.ko  fb_s6d02a1.ko  fb_ssd1325.ko  fb_tls8204.ko
          fb_hx8340bn.ko     fb_ili9340.ko  fb_s6d1121.ko  fb_ssd1331.ko  fb_uc1611.ko
          fb_hx8347d.ko      fb_ili9341.ko  fb_seps525.ko  fb_ssd1351.ko  fb_uc1701.ko
          fb_hx8353d.ko      fb_ili9481.ko  fb_sh1106.ko   fb_st7735r.ko  fb_upd161704.ko
          fb_hx8357d.ko      fb_ili9486.ko  fb_ssd1289.ko  fb_st7789v.ko
-         fb_ili9163.ko      fb_pcd8544.ko  fb_ssd1305.ko  fbtft.ko
-      ```
+         fb_ili9163.ko      fb_pcd8544.ko  fb_ssd1305.ko  fbtft.ko ```
+      
+ 
 
 
 
