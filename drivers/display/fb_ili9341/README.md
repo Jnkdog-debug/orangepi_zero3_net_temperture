@@ -32,30 +32,20 @@
 
 
 ## spi 协议说明
-   详细查询spi通信方式
-
-
-
+   详细请查询spi通信方式
 
 ---
-
-
-
-
 
 ## 📂 文件说明
 
 | 文件名             | 作用                      |
 |--------------------|---------------------------|
-| `ili9341_driver.c`   | 主驱动源码                |
-| `ili9341_driver.h`   | 头文件，结构体、函数声明等 |
 | `Makefile`         | 编译用的文件               |
 | `test_user.c`      | 用户空间测试用例（可选）   |
 | `dht11.dts`        | 设备树插件 需要放到overlays文件夹里编译    |   
 
 ## 驱动来源
-   野火 内核源码 驱动
-       设备树源码
+ 内核驱动
 
 
 ## 🧪 编译方法
@@ -66,47 +56,45 @@
 make
 ```
 
-### 设备树编译 
-1. 修改
-    /home/xyz/orangepi/orangepi-build/kernel/orange-pi-6.1-sun50iw9/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-   文件
-**未知如何修改 todo**
+## 由于内核存在fb_ili9341的代码
+   实际上直接使用就可以
+### 使用方法：
+   1. 首先查询是否内核是否存在fb_ili9341的驱动
+   用命令查看：
 
-2. 回kernel目录  make dtbs
-3. 产生的dtb文件 scp到orangepi 的 /boot/dtb/allwinner 下
-4. reboot 
-
-
-
-
-
-/********************问题非常大用设备树插件，不知道为什么无法使用************************/
-### 设备树插件编译：
-
-- 复制设备树插件
-   把 dht11.dts 放到 
-  /home/xyz/orangepi/orangepi-build/kernel/orange-pi-6.1-sun50iw9/arch/arm64/boot/dts/allwinner/overlay/ 
-  文件夹下
-- 修改makefile文件
-   修改allwinner 的makefile 文件：
-         sun50i-h616-pi-uart3.dtbo \
-         sun50i-h616-pi-uart4.dtbo  \
-   在这一行后添加：
-         dht11.dtbo
-- 编译
-   有关设备树插件的编译，请参考 [build_guide.md](/docs/build_guide.md)。
+   orangepi@orangepizero3:~$ ls /lib/modules/6.1.31-sun50iw9/kernel/drivers/staging/fbtft/
+         fb_agm1264k-fl.ko  fb_ili9320.ko  fb_ra8875.ko   fb_ssd1306.ko  fb_tinylcd.ko
+         fb_bd663474.ko     fb_ili9325.ko  fb_s6d02a1.ko  fb_ssd1325.ko  fb_tls8204.ko
+         fb_hx8340bn.ko     fb_ili9340.ko  fb_s6d1121.ko  fb_ssd1331.ko  fb_uc1611.ko
+         fb_hx8347d.ko      fb_ili9341.ko  fb_seps525.ko  fb_ssd1351.ko  fb_uc1701.ko
+         fb_hx8353d.ko      fb_ili9481.ko  fb_sh1106.ko   fb_st7735r.ko  fb_upd161704.ko
+         fb_hx8357d.ko      fb_ili9486.ko  fb_ssd1289.ko  fb_st7789v.ko
+         fb_ili9163.ko      fb_pcd8544.ko  fb_ssd1305.ko  fbtft.ko
 
 
 
-- 使用
-   1. 将编译出的dht11.dtbo文件放到开发板的 /boot/dtb/allwinner/overlay/下
-   2. 修改dht11 名字 成sun50i-h616-dht11.dtbo 否则无法正常使用
-   3. 编辑 /boot/orangepiEnv.txt 添加：
+2. 加载驱动
+   sudo modprobe fb_ili9341
 
-      overlays=dht11 //前期博客有误导，不添加前缀，直接添加设备树节点也存在 注意，等号之间不能有空格，否则加载不上。
+3. 添加设备树文件并重启生效
+      1. 新建一个设备树插件文件：
+      nano ili9341.dts
+      文件内容见[ili9341.dts](./ili9341.dts) 
+      
+      2. 用命令添加 ili9341的设备树插件文件：
+      sudo orangepi-add-overlay ili9341.dts 
 
-   4. 重启开发板，ls /proc/device-tree/ | grep dht11 检查是否存在 dht11设备。
-   5. 验证设备是否正常 
-      ls /proc/device-tree/dht11@0/
-      cat /proc/device-tree/dht11@0/compatible 
 
+      3. 重启使它生效：
+      sudo reboot
+      观察 /boot/orangepiEnv.txt 文件可以发现，已经添加了设备树驱动：
+      verbosity=1
+      bootlogo=false
+      console=both
+      disp_mode=1920x1080p60
+      overlay_prefix=sun50i-h616
+      rootdev=UUID=2a44ed57-6df2-44b4-9d51-99000c47e55b
+      rootfstype=ext4
+      **user_overlays=ili9341**
+      实际上在设备树overlay文件夹里添加.dtbo文件也是一样的，只不过需要编译和加载
+      详细过程和语法见dht11的编译。

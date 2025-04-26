@@ -1,0 +1,26 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+        compatible = "xunlong,orangepi-zero2", "allwinner,sun50i-h616"; 
+fragment@0 {
+    target = <&spi1>;
+    __overlay__ {
+        status = "okay";
+        cs-gpios = <&pio 2 11 0>;
+        ili9341: ili9341@0 {
+                compatible = "ilitek,ili9341";
+                reg = <0>;
+                spi-max-frequency = <40000000>;
+                rotate = <90>;
+                grb;    
+                fps = <30>;
+                buswidth = <8>;
+                reset-gpios = <&pio 2 7 1>; /*RESET=PC7*/
+                dc-gpios = <&pio 2 10 0>; /*DC_RS=PC10*/
+                led-gpios = <&pio 2 14 0>; /*LED=PC14*/
+                debug = <0>;
+        };
+    };
+  };
+};
