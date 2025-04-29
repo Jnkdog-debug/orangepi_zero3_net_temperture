@@ -1,0 +1,30 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+    compatible = "xunlong,orangepi-zero3", "allwinner,sun50i-h616";
+
+    fragment@0 {
+        target = <&i2c3>;
+        __overlay__ {
+            status = "okay";
+
+            ft6336g: touchscreen@38 {
+                compatible = "focaltech,fts";
+                reg = <0x38>;
+
+                interrupt-parent = <&pio>;
+                interrupts = <2 9 IRQ_TYPE_EDGE_FALLING>; // PC9
+                focaltech,irq-gpio = <&pio 2 9 GPIO_ACTIVE_HIGH>;
+                focaltech,reset-gpio = <&pio 2 5 GPIO_ACTIVE_HIGH>; // PC5
+
+                focaltech,max-touch-number = <2>;
+                touchscreen-size-x = <240>;
+                touchscreen-size-y = <320>;
+            };
+        };
+    };
+};
